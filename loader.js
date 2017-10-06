@@ -52,13 +52,14 @@ var host = 'https://xupeiyao.github.io/YoutubeDownloaderBookmarkTool/';
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, Promise.all([
-                        //SweetAlert
+                case 0: 
+                //非同步載入並等候SweetAlert、MediaGet.js
+                return [4 /*yield*/, Promise.all([
                         loadScript('https://unpkg.com/sweetalert/dist/sweetalert.min.js'),
-                        //MediaGet.js
                         loadScript(host + 'lib/mediaGet/mediaget.js')
                     ])];
                 case 1:
+                    //非同步載入並等候SweetAlert、MediaGet.js
                     _a.sent();
                     return [4 /*yield*/, loadScript(host + 'mainProcess.js')];
                 case 2:

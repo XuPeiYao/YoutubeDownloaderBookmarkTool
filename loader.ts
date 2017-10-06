@@ -12,10 +12,9 @@ async function loadScript(src: string) : Promise<void>{
 var host = 'https://xupeiyao.github.io/YoutubeDownloaderBookmarkTool/';
 
 (async function(){
+    //非同步載入並等候SweetAlert、MediaGet.js
     await Promise.all([
-        //SweetAlert
         loadScript('https://unpkg.com/sweetalert/dist/sweetalert.min.js'),
-        //MediaGet.js
         loadScript(host + 'lib/mediaGet/mediaget.js')
     ]);
     
