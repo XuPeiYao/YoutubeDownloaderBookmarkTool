@@ -9,13 +9,24 @@ declare var swal;
 			return false;
 		});
 		var downloadList = mediaInfos.map(function(y){
-			return "<li><a download href=\"" + y.realUrl + "\">[" + y.attributes.mime.split("/")[1] + "]" + 
-			(y.attributes.size || ("Audio - " + y.attributes.bitrate )) + 
-			"</li>"
+			var item = document.createElement("li");
+			var link = document.createElement("a");
+			link.href = y.realUrl;
+			link.download = "";
+			link.innerText = 
+				"[" + y.attributes.mime.split("/")[1] + "]" + 
+				(y.attributes.size || ("Audio - " + y.attributes.bitrate ));
+
+			item.appendChild(link);
+			return item;
 		});
+		var contentElement = document.createElement("ul");
+		for(var item of downloadList){
+			contentElement.appendChild(item);
+		}
 		swal({
 			title: "Download",
-			text: "<ul>" + downloadList.join("") + "</ul>",
+			content: contentElement,
 			html: true
 		});
 	}catch(e){

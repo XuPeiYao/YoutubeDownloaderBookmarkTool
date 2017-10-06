@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 (function () {
     return __awaiter(this, void 0, void 0, function () {
-        var extractor, mediaInfos, downloadList, e_1;
+        var extractor, mediaInfos, downloadList, contentElement, _i, downloadList_1, item, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -54,13 +54,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
                         return false;
                     });
                     downloadList = mediaInfos.map(function (y) {
-                        return "<li><a download href=\"" + y.realUrl + "\">[" + y.attributes.mime.split("/")[1] + "]" +
-                            (y.attributes.size || ("Audio - " + y.attributes.bitrate)) +
-                            "</li>";
+                        var item = document.createElement("li");
+                        var link = document.createElement("a");
+                        link.href = y.realUrl;
+                        link.download = "";
+                        link.innerText =
+                            "[" + y.attributes.mime.split("/")[1] + "]" +
+                                (y.attributes.size || ("Audio - " + y.attributes.bitrate));
+                        item.appendChild(link);
+                        return item;
                     });
+                    contentElement = document.createElement("ul");
+                    for (_i = 0, downloadList_1 = downloadList; _i < downloadList_1.length; _i++) {
+                        item = downloadList_1[_i];
+                        contentElement.appendChild(item);
+                    }
                     swal({
                         title: "Download",
-                        text: "<ul>" + downloadList.join("") + "</ul>",
+                        content: contentElement,
                         html: true
                     });
                     return [3 /*break*/, 4];
