@@ -1,0 +1,12 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target":"es5",
+        "module": "system",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "dom","es6"
+        ]
+    }
+}
